@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+ocr_api/ocr_env/
+.venv/
+env/
+venv/
+ENV/
+
+# Environment variables
+.env
+.env.example
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# OCR Temp
+info_sight/ocr_api/temp_uploads/
+*.png
+*.jpg
+*.pdf
+!README_images/

@@ -1,0 +1,9 @@
+google-genai
+python-dotenv
+fastapi
+uvicorn
+python-multipart
+pillow
+streamlit
+pdf2image
+pymupdf
