@@ -41,5 +41,5 @@ EXPOSE 8000
 # Set environment variables (GEMINI_API_KEY must be passed at runtime)
 ENV PYTHONUNBUFFERED=1
 
-# Run Uvicorn and specify the app directory so it finds local python modules
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--app-dir", "info_sight/ocr_api"]
+# Run Uvicorn using the shell syntax so it expands the dynamic PORT variable
+CMD uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} --app-dir info_sight/ocr_api
