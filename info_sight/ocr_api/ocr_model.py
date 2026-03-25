@@ -29,10 +29,11 @@ The JSON object MUST contain the following keys exactly:
 - "text": The complete raw text extracted from the document.
 - "invoice_data": An object containing the following keys (if a field is not found, set its value to null):
   - "invoice_number": The invoice identifier
-  - "date": The invoice date
+  - "date": The invoice date (format as YYYY-MM-DD ideally)
   - "total_amount": The total amount or grand total
   - "vendor_name": The name of the company issuing the invoice
   - "client_name": The name of the client being billed
+- "confidence": An object providing a confidence score (from 0.0 to 1.0) for each extracted field in "invoice_data". Keys must match the "invoice_data" keys exactly. Use 1.0 for high certainty, lower for ambiguous/unclear text.
 - "addresses": A list of address objects found in the document. For each address, provide:
   - "role": e.g., "vendor", "client", "shipping", or "unknown"
   - "original": The exact address text found in the document
