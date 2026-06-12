@@ -109,8 +109,10 @@ if uploaded_file is not None:
                             if results["addresses"]:
                                 st.write(f"Found {len(results['addresses'])} address(es):")
                                 for addr in results["addresses"]:
+                                    role_text = addr.get('role', 'unknown').replace('_', ' ').title()
                                     st.markdown(f"""
                                     <div class="address-card">
+                                        <p><b>Role:</b> {role_text}</p>
                                         <p><b>Original:</b> {addr['original']}</p>
                                         <p><b>Normalized:</b> {addr['normalized']}</p>
                                         <a href="{addr['maps_link']}" target="_blank" class="maps-link">📍 Open in Google Maps</a>

@@ -38,21 +38,41 @@ export default function ResultCard({ data }) {
           <DataField label="Date" value={data.date} confidence={data.confidence?.date} icon={getConfidenceIcon} color={getConfidenceColor} />
           <DataField label="Total Amount" value={data.total} confidence={data.confidence?.total_amount} icon={getConfidenceIcon} color={getConfidenceColor} />
           <DataField label="Vendor Name" value={data.vendor} confidence={data.confidence?.vendor_name} icon={getConfidenceIcon} color={getConfidenceColor} />
+          <DataField label="Client Name" value={data.customer_name} confidence={data.confidence?.client_name} icon={getConfidenceIcon} color={getConfidenceColor} />
           
-          <div style={{ gridColumn: '1 / -1', backgroundColor: 'var(--background)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
-            <h4 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Normalized Address</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <p style={{ fontWeight: '500', fontSize: '1.1rem' }}>{data.address || 'Address not found'}</p>
-              {data.address && (
-                <a 
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.address)}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--primary)', fontWeight: 'bold' }}
-                >
-                  <MapPin size={18} /> View on Map
-                </a>
-              )}
+          <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+            <div style={{ backgroundColor: 'var(--background)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
+              <h4 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Company Address (Vendor)</h4>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                <p style={{ fontWeight: '500', fontSize: '1.05rem', margin: 0 }}>{data.vendor_address || 'Address not found'}</p>
+                {data.vendor_address && (
+                  <a 
+                    href={data.vendor_address_link || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.vendor_address)}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--primary)', fontWeight: 'bold', whiteSpace: 'nowrap', fontSize: '0.9rem' }}
+                  >
+                    <MapPin size={16} /> View on Map
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: 'var(--background)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
+              <h4 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Client Address (Customer)</h4>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                <p style={{ fontWeight: '500', fontSize: '1.05rem', margin: 0 }}>{data.client_address || 'Address not found'}</p>
+                {data.client_address && (
+                  <a 
+                    href={data.client_address_link || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.client_address)}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--primary)', fontWeight: 'bold', whiteSpace: 'nowrap', fontSize: '0.9rem' }}
+                  >
+                    <MapPin size={16} /> View on Map
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -54,14 +54,16 @@ export default function HistoryPage() {
   };
 
   const exportCSV = () => {
-    const headers = ["Invoice Number", "Date", "Total", "Vendor", "Address"];
+    const headers = ["Invoice Number", "Date", "Total", "Vendor", "Client Name", "Company Address", "Client Address"];
     const csvRows = [headers.join(",")];
     
     invoices.forEach(inv => {
-      // Escape commas in address and vendor
+      // Escape commas and double quotes in fields
       const cleanVendor = `"${(inv.vendor || '').replace(/"/g, '""')}"`;
-      const cleanAddress = `"${(inv.address || '').replace(/"/g, '""')}"`;
-      csvRows.push([inv.invoice_number, inv.date, inv.total, cleanVendor, cleanAddress].join(","));
+      const cleanClient = `"${(inv.customer_name || '').replace(/"/g, '""')}"`;
+      const cleanVendorAddr = `"${(inv.vendor_address || '').replace(/"/g, '""')}"`;
+      const cleanClientAddr = `"${(inv.client_address || '').replace(/"/g, '""')}"`;
+      csvRows.push([inv.invoice_number, inv.date, inv.total, cleanVendor, cleanClient, cleanVendorAddr, cleanClientAddr].join(","));
     });
     
     downloadBlob(csvRows.join("\n"), "InfoSight_History.csv", "text/csv");
